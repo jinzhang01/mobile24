@@ -6,9 +6,12 @@ export default function App() {
   const appName = "summer 2024";
   return (
     <View style={styles.container}>
-      <Header name={appName} theme="dark"
+      <Header name={appName} theme="dark">
+        {/* add child component */}
+        <Text>child component1 \n</Text>
+        <Text>child component2 \n</Text>
+      </Header> 
 
-      />  
       <Text>welcome to {appName} app -- App component
 
       </Text>
