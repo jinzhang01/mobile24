@@ -3,7 +3,7 @@ import React from 'react'
 
 const Header = (props) => {
 
-    console.log(props.children)
+    // console.log(props.children)
   return (
     <View>
         <Text>welcome to {props.name} app -- hearder component

@@ -1,9 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import Header from './Components/Header';
+import React, { useState } from 'react';
 
 export default function App() {
   const appName = "summer 2024";
+  const[text, setText] = useState("");
+
   return (
     <View style={styles.container}>
       <Header name={appName} theme="dark">
@@ -15,6 +18,23 @@ export default function App() {
       <Text>welcome to {appName} app -- App component
 
       </Text>
+
+      <TextInput  
+        value={text}
+        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        placeholder="Type here to start!"
+        // onChangeText={text => setText(text)}
+        onChangeText ={function(changedText){
+          setText(changedText);
+          // console.log(text)
+          // console.log(setText)
+        }}
+        
+
+      />
+
+      <Text>you typed: {text}</Text>
+
       <StatusBar style="auto" />
     </View>
   );
