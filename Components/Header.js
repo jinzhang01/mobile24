@@ -1,10 +1,13 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const Header = () => {
+const Header = (props) => {
+    console.log(props)
   return (
     <View>
-      <Text>Header</Text>
+        <Text>welcome to {props.name} app -- hearder component
+            
+        </Text>
     </View>
   )
 }

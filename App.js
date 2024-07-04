@@ -6,8 +6,10 @@ export default function App() {
   const appName = "summer 2024";
   return (
     <View style={styles.container}>
-      <Header />
-      <Text>welcome to {appName} app
+      <Header name={appName} theme="dark"
+
+      />  
+      <Text>welcome to {appName} app -- App component
 
       </Text>
       <StatusBar style="auto" />
