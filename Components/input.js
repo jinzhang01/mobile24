@@ -18,11 +18,11 @@ const[isEdited, setEdited] = useState(false);
     
     onChangeText ={function(changedText){
       setText(changedText);
-      setEdited(!isEdited);
+      setEdited(false);}}
+  
       // console.log(text)
       // console.log(setText)
-    
-    }}
+    onBlur = {() => {setEdited(true);}}
     
     />
 
