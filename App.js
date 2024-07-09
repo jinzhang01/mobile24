@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Header from './Components/Header';
 import React, { useState } from 'react';
 import Input from './Components/Input';
@@ -16,9 +16,8 @@ export default function App() {
         <Text>child component2 \n</Text> */}
       </Header> 
 
-      <Text>welcome to {appName} app -- App component
-
-      </Text>
+      {/* <Text>welcome to {appName} app -- App component
+      </Text> */}
 
       <Input />
 
