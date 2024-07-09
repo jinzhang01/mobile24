@@ -1,10 +1,15 @@
 import { View, Text, TextInput } from 'react-native'
 import React from 'react'
 import { useState } from 'react'
+import { Button } from 'react-native'
 
 const Input = () => {
 const[text, setText] = useState("");
 const[isEdited, setEdited] = useState(false);
+
+function handleConfirm(){
+  console.log(text);
+}
 
   return (
     <View>
@@ -29,6 +34,7 @@ const[isEdited, setEdited] = useState(false);
 
     <Text>you typed: {text}</Text>
     {isEdited ? <Text>Thank You</Text> : null}
+    <Button title="Submit" onPress={() => handleConfirm()} />
     </View>
   )
 }
