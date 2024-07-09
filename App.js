@@ -7,6 +7,14 @@ import Input from './Components/Input';
 export default function App() {
   const appName = "summer 2024";
 
+  const [receivedText, setReceivedText] = useState("start");
+  
+  function handleInputData(data){
+
+    console.log("input is handled", data);
+    setReceivedText(data);
+  } 
+
 
   return (
     <View style={styles.container}>
@@ -19,7 +27,10 @@ export default function App() {
       {/* <Text>welcome to {appName} app -- App component
       </Text> */}
 
-      <Input />
+
+      <Input inputHandler={handleInputData}/>
+
+        <Text> {receivedText}</Text>
 
       <StatusBar style="auto" />
     </View>
