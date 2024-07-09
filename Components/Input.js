@@ -39,8 +39,12 @@ function handleConfirm(){
 
     <Text>you typed: {text}</Text>
     {isEdited ? <Text>Thank You</Text> : null}
-    <Button title="Submit" onPress={() => handleConfirm()} />
-      {/* another second way: function(){handleConfirm()} */}
+
+      <View style={styles.button}>
+        <Button title="Submit" onPress={() => handleConfirm()} />
+        {/* another second way: function(){handleConfirm()} */}
+        </View>
+
     </View>
     </Modal>
   )
@@ -50,9 +54,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    // without it everything will be on the left. But it will be strached. 
     alignItems: 'center',
+    // without it everything will be on the top
     justifyContent: 'center',
   },
+  button: {
+    backgroundColor: 'blue',
+    color: 'white',
+    fontSize: 20,
+    width: "50%",
+    margin: 70
+  }
 });
 
 export default Input
