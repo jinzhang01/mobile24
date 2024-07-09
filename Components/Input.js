@@ -11,7 +11,7 @@ const[text, setText] = useState("");
 const[isEdited, setEdited] = useState(false);
 
 function handleConfirm(){
-  console.log(text);
+  // console.log(text);
   inputHandler(text);
 }
 

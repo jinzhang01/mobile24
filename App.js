@@ -10,7 +10,6 @@ export default function App() {
   const [receivedText, setReceivedText] = useState("start");
   
   function handleInputData(data){
-
     console.log("input is handled", data);
     setReceivedText(data);
   } 
