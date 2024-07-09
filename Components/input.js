@@ -10,6 +10,7 @@ const[isEdited, setEdited] = useState(false);
     <View>
     <TextInput 
     autoFocus={true} 
+    // secureTextEntry={true}
  
     value={text}
     style={{height: 40, borderColor: 'gray', borderWidth: 1}}
