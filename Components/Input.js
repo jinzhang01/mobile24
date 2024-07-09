@@ -1,11 +1,11 @@
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, TextInput, StyleSheet, Modal } from 'react-native'
 import React from 'react'
 import { useState } from 'react'
 import { Button } from 'react-native'
 
 // update Input why my inputHandler is not working instead of props.inputHandler
 // answer you can etier props.xx or {xx} to descructure before using it
-const Input = ({inputHandler}) => {
+const Input = ({inputHandler, isModalVisible}) => {
 
 const[text, setText] = useState("");
 const[isEdited, setEdited] = useState(false);
@@ -16,7 +16,8 @@ function handleConfirm(){
 }
 
   return (
-    <View>
+    <Modal animationType="slide" visible={isModalVisible}> 
+    <View style={styles.container}>
     <TextInput 
     autoFocus={true} 
     // secureTextEntry={true}
@@ -41,7 +42,17 @@ function handleConfirm(){
     <Button title="Submit" onPress={() => handleConfirm()} />
       {/* another second way: function(){handleConfirm()} */}
     </View>
+    </Modal>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 export default Input
