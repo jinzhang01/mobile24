@@ -5,7 +5,7 @@ import { Button } from 'react-native'
 
 // update Input why my inputHandler is not working instead of props.inputHandler
 // answer you can etier props.xx or {xx} to descructure before using it
-const Input = ({inputHandler, isModalVisible}) => {
+const Input = ({inputHandler, isModalVisible, isCancel}) => {
 
 const[text, setText] = useState("");
 const[isEdited, setEdited] = useState(false);
@@ -39,11 +39,21 @@ function handleConfirm(){
 
     <Text>you typed: {text}</Text>
     {isEdited ? <Text>Thank You</Text> : null}
+      <View style={styles.bottonContainer}> 
+      <View style={styles.button}>
+        <Button title="Cancel" onPress={() => {
+          isCancel();
+          setText("")}
+          } />
+      </View>
 
       <View style={styles.button}>
         <Button title="Submit" onPress={() => handleConfirm()} />
         {/* another second way: function(){handleConfirm()} */}
-        </View>
+      </View>
+      </View>
+
+
 
     </View>
     </Modal>
@@ -60,11 +70,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    backgroundColor: 'blue',
+    backgroundColor: 'lightblue',
     color: 'white',
     fontSize: 20,
-    width: "50%",
-    margin: 70
+    width: "30%",
+    margin: 30
+  },
+  bottonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    width: "60%"
   }
 });
 

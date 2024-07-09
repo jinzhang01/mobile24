@@ -21,6 +21,10 @@ export default function App() {
     setModalVisible(false);
   } 
 
+  function handleCancel(){
+    setModalVisible(false);
+  }
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -39,7 +43,7 @@ export default function App() {
       </View>
 
       <View style={styles.bottomContainer}>
-      <Input inputHandler={handleInputData} isModalVisible={modalVisible}/>
+      <Input inputHandler={handleInputData} isModalVisible={modalVisible} isCancel={handleCancel}/>
 
         <Text style={styles.textStyles}> {receivedText}</Text>
 
