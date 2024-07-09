@@ -48,7 +48,10 @@ function handleConfirm(){
       </View>
 
       <View style={styles.button}>
-        <Button title="Submit" onPress={() => handleConfirm()} />
+        <Button title="Submit" onPress={() => {
+          handleConfirm();
+          setText("")}
+        } />
         {/* another second way: function(){handleConfirm()} */}
       </View>
       </View>
