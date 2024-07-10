@@ -7,7 +7,6 @@ import { Button, SafeAreaView } from 'react-native';
 
 export default function App() {
   const appName = "summer 2024";
-
   const [receivedText, setReceivedText] = useState("start");
   const [modalVisible, setModalVisible] = useState(false);
   
@@ -22,6 +21,7 @@ export default function App() {
   } 
 
   function handleCancel(){
+    console.log("cancel is handled");
     setModalVisible(false);
   }
 
@@ -43,9 +43,12 @@ export default function App() {
       </View>
 
       <View style={styles.bottomContainer}>
-      <Input inputHandler={handleInputData} isModalVisible={modalVisible} isCancel={handleCancel}/>
+      <Input inputHandler={handleInputData} 
+        isModalVisible={modalVisible} 
+        isCancel={handleCancel}
+      />
 
-        <Text style={styles.textStyles}> {receivedText}</Text>
+      <Text style={styles.textStyles}> {receivedText}</Text>
 
       <StatusBar style="auto" />
       

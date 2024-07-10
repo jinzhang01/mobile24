@@ -14,6 +14,15 @@ const [isDisabled, setDisabled] = useState(true);
 function handleConfirm(){
   // console.log(text);
   inputHandler(text);
+  setDisabled(text.length != 0)
+  setText("")
+}
+
+//add the function handle cancel
+function handleCancel(){
+  setDisabled(text.length != 0)
+  setText("")
+  isCancel();
 }
 
   return (
@@ -22,8 +31,8 @@ function handleConfirm(){
         <View style={styles.container}>
 
             
-        <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2617/2617812.png' }} alt="goal image1" style={styles.imageStyle}/>
-        <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2617/2617812.png' }} alt="goal image2" style={styles.imageStyle}/>
+        <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2617/2617812.png' }} alt="goal web" style={styles.imageStyle}/>
+        <Image source={require('../res/goal.png')} alt="goal local" style={styles.imageStyle}/>
 
           <TextInput 
           autoFocus={true} 
@@ -35,7 +44,7 @@ function handleConfirm(){
           onChangeText ={function(changedText){
             setText(changedText);
             setEdited(false);
-            changedText.length > 0 ? setDisabled(false) : setDisabled(true);
+            setDisabled(text.length === 0)
           }
           }
         
@@ -50,14 +59,14 @@ function handleConfirm(){
           <View style={styles.bottonContainer}> 
             <View style={styles.button}>
               <Button title="Cancel" onPress={() => {
-                isCancel();
-                setText("")}
+                handleCancel();
+                }
                 } />
             </View>
             <View style={styles.button}>
               <Button disabled={isDisabled} title="Confirm" onPress={() => {
                 handleConfirm();
-                setText("")}
+                }
               } />
               {/* another second way: function(){handleConfirm()} */}
             </View>
