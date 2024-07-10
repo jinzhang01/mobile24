@@ -7,7 +7,7 @@ import { Button, SafeAreaView } from 'react-native';
 
 export default function App() {
   const appName = "summer 2024";
-  const [receivedText, setReceivedText] = useState("start");
+  const [receivedText, setReceivedText] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   
   function handleInputData(data){

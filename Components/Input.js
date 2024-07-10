@@ -30,44 +30,42 @@ function handleCancel(){
       <View style={styles.modelBackgroud}>
         <View style={styles.container}>
 
-            
-        <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2617/2617812.png' }} alt="goal web" style={styles.imageStyle}/>
-        <Image source={require('../res/goal.png')} alt="goal local" style={styles.imageStyle}/>
+          <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2617/2617812.png' }} alt="goal web" style={styles.imageStyle}/>
+          <Image source={require('../res/goal.png')} alt="goal local" style={styles.imageStyle}/>
 
           <TextInput 
-          autoFocus={true} 
-          // secureTextEntry={true}
-          value={text}
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          placeholder="Type here to start!"
-          // onChangeText={text => setText(text)} 
-          onChangeText ={function(changedText){
-            setText(changedText);
-            setEdited(false);
-            setDisabled(text.length === 0)
-          }
-          }
-        
-            // console.log(text)
-            // console.log(setText)
-          onBlur = {() => {setEdited(true);}}
+            autoFocus={true} 
+            // secureTextEntry={true}
+            value={text}
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            placeholder="Type here to start!"
+            // onChangeText={text => setText(text)} 
+            onChangeText ={function(changedText){
+              setText(changedText);
+              setEdited(false);
+              setDisabled(text.length === 0)
+            }
+            }
           
+              // console.log(text)
+              // console.log(setText)
+            onBlur = {() => {setEdited(true);}}
+            
           />
 
           <Text>you typed: {text}</Text>
           {isEdited ? <Text>Thank You</Text> : null}
+
           <View style={styles.bottonContainer}> 
             <View style={styles.button}>
               <Button title="Cancel" onPress={() => {
                 handleCancel();
-                }
-                } />
+                }} />
             </View>
             <View style={styles.button}>
               <Button disabled={isDisabled} title="Confirm" onPress={() => {
                 handleConfirm();
-                }
-              } />
+                }} />
               {/* another second way: function(){handleConfirm()} */}
             </View>
           </View>
