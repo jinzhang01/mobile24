@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, FlatList } from 'react-native';
 import Header from './Components/Header';
 import Input from './Components/Input';
+import Goalitem from './Components/Goalitem';
 
 export default function App() {
   const appName = "summer 2024";
@@ -34,13 +35,25 @@ export default function App() {
           isCancel={handleCancel}
         />
 
-        <ScrollView horizontal={false}>
+        <FlatList
+        renderItem={({item})=>{
+          return (
+             <Goalitem passItem={item}/> 
+            // <View style={styles.textContainer}>
+            //   <Text style={styles.textStyle}>{item.text}</Text>
+            // </View>
+          );
+        }}
+        data={goals}
+        />
+
+        {/* <ScrollView horizontal={false}>
           <View style={styles.textContainer}> 
             {goals.map((goalObject) => (
               <Text style={styles.textStyle} key={goalObject.id}>{goalObject.text}</Text>
             ))}
           </View>
-        </ScrollView>
+        </ScrollView> */}
 
       </View>
     </SafeAreaView>
