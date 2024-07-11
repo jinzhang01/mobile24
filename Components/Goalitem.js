@@ -1,13 +1,17 @@
-import { View, Text, StyleSheet} from 'react-native'
+import { View, Text, StyleSheet, Button} from 'react-native'
 import React from 'react'
 
-const Goalitem = ({passItem}) => {
+
+const Goalitem = ({passItem, deleteHandler}) => {
   return (
     <View style={styles.textContainer}>
         <Text style={styles.textStyle}>{passItem.text}</Text>
+        
+        <Button color="red" title="x" onPress={()=>deleteHandler(passItem.id)}/> 
     </View>
   )
 }
+
 
 const styles = StyleSheet.create({
 textContainer: {
@@ -15,6 +19,8 @@ textContainer: {
     marginVertical: 10,
     borderRadius: 10,
     padding: 10, 
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   textStyle: {
     fontSize: 90, 

@@ -21,6 +21,14 @@ export default function App() {
     setModalVisible(false);
   }
 
+  function handleDeleteGoal(daletedId) {
+    console.log("delete is handled", daletedId);
+    setGoals((currentGoals) => {
+      return currentGoals.filter((goal) => goal.id !== daletedId);
+    });
+
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topContainer}> 
@@ -38,7 +46,7 @@ export default function App() {
         <FlatList
         renderItem={({item})=>{
           return (
-             <Goalitem passItem={item}/> 
+             <Goalitem passItem={item} deleteHandler={handleDeleteGoal}/> 
             // <View style={styles.textContainer}>
             //   <Text style={styles.textStyle}>{item.text}</Text>
             // </View>
