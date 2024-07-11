@@ -3,11 +3,12 @@ import React from 'react'
 
 
 const Goalitem = ({passItem, deleteHandler}) => {
+    const {id, text} = passItem;
   return (
     <View style={styles.textContainer}>
-        <Text style={styles.textStyle}>{passItem.text}</Text>
+        <Text style={styles.textStyle}>{text}</Text>
         
-        <Button color="red" title="x" onPress={()=>deleteHandler(passItem.id)}/> 
+        <Button color="red" title="x" onPress={()=>deleteHandler(id)}/> 
     </View>
   )
 }
