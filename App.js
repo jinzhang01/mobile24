@@ -1,59 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Header from './Components/Header';
 import React, { useState } from 'react';
+import { StyleSheet, Text, View, Button, SafeAreaView } from 'react-native';
+import Header from './Components/Header';
 import Input from './Components/Input';
-import { Button, SafeAreaView } from 'react-native';
 
 export default function App() {
   const appName = "summer 2024";
-  const [receivedText, setReceivedText] = useState("");
+  const [goals, setGoals] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   
-  function handleInputData(data){
+  function handleInputData(data) {
     console.log("input is handled", data);
-    setReceivedText(data);
-    // hide the modal -- the function is passed to the child component
-    // when the button is clicked
-    // the data get passed to the parent component above 
-    // and at the same time the setModalVisible is called to hide the modal
+    const newGoal = { text: data, id: Math.random().toString() };
+    setGoals((currentGoals) => [...currentGoals, newGoal]);
     setModalVisible(false);
   } 
 
-  function handleCancel(){
+  function handleCancel() {
     console.log("cancel is handled");
     setModalVisible(false);
   }
 
-
   return (
     <SafeAreaView style={styles.container}>
-
       <View style={styles.topContainer}> 
-      <Header name={appName} theme="dark">
-        {/* add child component */}
-        {/* <Text>child component1 \n</Text>
-        <Text>child component2 \n</Text> */}
-      </Header> 
-
-      <Button title="Add a goal" onPress={() => {
-        setModalVisible(true);
-      }} />
-
+        <Header name={appName} theme="dark" />
+        <Button title="Add a goal" onPress={() => setModalVisible(true)} />
       </View>
 
       <View style={styles.bottomContainer}>
-      <Input inputHandler={handleInputData} 
-        isModalVisible={modalVisible} 
-        isCancel={handleCancel}
-      />
+        <Input 
+          inputHandler={handleInputData} 
+          isModalVisible={modalVisible} 
+          isCancel={handleCancel}
+        />
 
-      <Text style={styles.textStyles}> {receivedText}</Text>
-
-      <StatusBar style="auto" />
       
-      </View>
+        <View style={styles.textContainer}> 
+          {goals.map((goalObject) => (
+            <Text style={styles.textStyle} key={goalObject.id}>{goalObject.text}</Text>
+          ))}
 
+
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
@@ -62,25 +51,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    // alignItems: 'center',
     justifyContent: 'center',
   },
-  textStyles: {
-    color: 'red',
-    fontSize: 20,
-    margin: 10,
-    padding: 10
-  },
-
   topContainer: {
     flex: 1,
     backgroundColor: 'white',
     alignItems: 'center',
   },
-
   bottomContainer: {
     flex: 4,
     backgroundColor: 'yellow',
     alignItems: 'center',
+  },
+  textContainer: {
+    backgroundColor: 'lightblue',
+    marginVertical: 10,
+    borderRadius: 10,
+    padding: 10, 
+  },
+  textStyle: {
+    fontSize: 20,
+    marginVertical: 5,
+    margin: 10
   }
 });
