@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView } from 'react-native';
 import Header from './Components/Header';
 import Input from './Components/Input';
 
@@ -34,14 +34,14 @@ export default function App() {
           isCancel={handleCancel}
         />
 
-      
-        <View style={styles.textContainer}> 
-          {goals.map((goalObject) => (
-            <Text style={styles.textStyle} key={goalObject.id}>{goalObject.text}</Text>
-          ))}
+        <ScrollView horizontal={false}>
+          <View style={styles.textContainer}> 
+            {goals.map((goalObject) => (
+              <Text style={styles.textStyle} key={goalObject.id}>{goalObject.text}</Text>
+            ))}
+          </View>
+        </ScrollView>
 
-
-        </View>
       </View>
     </SafeAreaView>
   );
@@ -70,8 +70,9 @@ const styles = StyleSheet.create({
     padding: 10, 
   },
   textStyle: {
-    fontSize: 20,
+    fontSize: 90, 
     marginVertical: 5,
     margin: 10
-  }
+  },
+
 });
