@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     height: 100,
     margin: 10
   }
+  
 });
 
 export default Input

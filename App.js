@@ -67,7 +67,9 @@ const styles = StyleSheet.create({
   },
   textStyles: {
     color: 'red',
-    fontSize: 20
+    fontSize: 20,
+    margin: 10,
+    padding: 10
   },
 
   topContainer: {
