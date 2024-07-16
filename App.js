@@ -4,6 +4,7 @@ import Home from './Components/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import GoalDetails from './Components/GoalDetails';
+import { Button } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 console.log(Stack);
@@ -21,7 +22,17 @@ const App = () => {
         headerTintColor: "white"
       }} 
 />
-        <Stack.Screen name="Details" component={GoalDetails} />
+    <Stack.Screen 
+      name="Details" 
+      component={GoalDetails} 
+      options={({ route }) => ({ 
+        title: route.params.pressgoal.text,
+        headerRight: () => (
+          // set options method
+          <Button title="Warning" onPress={() => alert("test")} />
+        )
+      })}
+    />
       </Stack.Navigator>
     </NavigationContainer>
   );

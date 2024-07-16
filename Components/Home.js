@@ -29,8 +29,10 @@ export default function Home( {navigation} ) {
 
     function handlePressGoal(pressgoal) {
       console.log("press is handled", pressgoal);
+      // just use {} to make it a object without defining the key name. a short cut. 
+      navigation.navigate('Details', {pressgoal})
       
-      navigation.navigate('Details', {goalobject: pressgoal});
+    //   navigation.navigate('Details', {goalobject: pressgoal});
   }
 
   return (
