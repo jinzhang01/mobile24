@@ -2,13 +2,16 @@ import { View, Text, StyleSheet, Button} from 'react-native'
 import React from 'react'
 
 
-const Goalitem = ({passItem, deleteHandler}) => {
-    const {id, text} = passItem;
+const Goalitem = ({passItem, deleteHandler, pressHandler}) => {
+  const {id, text} = passItem;
   return (
     <View style={styles.textContainer}>
         <Text style={styles.textStyle}>{text}</Text>
         
         <Button color="red" title="x" onPress={()=>deleteHandler(id)}/> 
+        <Button color="black" title="i" onPress={()=>pressHandler(passItem)
+          //pass the goal object. 
+        }/>
     </View>
   )
 }
@@ -24,7 +27,7 @@ textContainer: {
     justifyContent: "space-between",
   },
   textStyle: {
-    fontSize: 90, 
+    fontSize: 24, 
     marginVertical: 5,
     margin: 10
   }
