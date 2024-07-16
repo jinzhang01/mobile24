@@ -27,9 +27,10 @@ export default function Home( {navigation} ) {
       return currentGoals.filter((goal) => goal.id !== daletedId);
     })};
 
-    function handlePressGoal() {
-      console.log("press is handled");
-      navigation.navigate('Details');
+    function handlePressGoal(pressgoal) {
+      console.log("press is handled", pressgoal);
+      
+      navigation.navigate('Details', {goalobject: pressgoal});
   }
 
   return (

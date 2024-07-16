@@ -9,7 +9,9 @@ const Goalitem = ({passItem, deleteHandler, pressHandler}) => {
         <Text style={styles.textStyle}>{text}</Text>
         
         <Button color="red" title="x" onPress={()=>deleteHandler(id)}/> 
-        <Button color="black" title="i" onPress={()=>pressHandler()}/>
+        <Button color="black" title="i" onPress={()=>pressHandler(passItem)
+          //pass the goal object. 
+        }/>
     </View>
   )
 }
