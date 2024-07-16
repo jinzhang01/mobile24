@@ -3,7 +3,7 @@ import React from 'react'
 
 
 const Goalitem = ({passItem, deleteHandler}) => {
-    const {id, text} = passItem;
+  const {id, text} = passItem;
   return (
     <View style={styles.textContainer}>
         <Text style={styles.textStyle}>{text}</Text>
