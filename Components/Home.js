@@ -27,13 +27,13 @@ export default function Home( {navigation} ) {
       return currentGoals.filter((goal) => goal.id !== daletedId);
     })};
 
-    function handlePressGoal(pressgoal) {
-      console.log("press is handled", pressgoal);
-      // just use {} to make it a object without defining the key name. a short cut. 
-      navigation.navigate('Details', {pressgoal})
+//     function handlePressGoal(pressgoal) {
+//       console.log("press is handled", pressgoal);
+//       // just use {} to make it a object without defining the key name. a short cut. 
+//       navigation.navigate('Details', {pressgoal})
       
-    //   navigation.navigate('Details', {goalobject: pressgoal});
-  }
+//     //   navigation.navigate('Details', {goalobject: pressgoal});
+//   }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -52,7 +52,7 @@ export default function Home( {navigation} ) {
         <FlatList
         renderItem={({item})=>{
           return (
-             <Goalitem passItem={item} deleteHandler={handleDeleteGoal} pressHandler={handlePressGoal}/> 
+             <Goalitem passItem={item} deleteHandler={handleDeleteGoal}/> 
             // <View style={styles.textContainer}>
             //   <Text style={styles.textStyle}>{item.text}</Text>
             // </View>

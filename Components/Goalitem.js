@@ -1,15 +1,17 @@
 import { View, Text, StyleSheet, Button} from 'react-native'
 import React from 'react'
-
+import { useNavigation } from '@react-navigation/native';
 
 const Goalitem = ({passItem, deleteHandler, pressHandler}) => {
   const {id, text} = passItem;
+  const navigation = useNavigation();
+
   return (
     <View style={styles.textContainer}>
         <Text style={styles.textStyle}>{text}</Text>
         
         <Button color="red" title="x" onPress={()=>deleteHandler(id)}/> 
-        <Button color="black" title="i" onPress={()=>pressHandler(passItem)
+        <Button color="black" title="i" onPress={()=>navigation.navigate('Details', {passItem})
           //pass the goal object. 
         }/>
     </View>
