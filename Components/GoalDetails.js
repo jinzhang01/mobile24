@@ -1,14 +1,32 @@
 import { View, Text, Button } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect }  from 'react'
+
 
 const GoalDetails = ( {navigation, route}) => {
+const [textColor, setTextColor] = useState("black");
+
+useEffect(() => {
+    navigation.setOptions({
+      title: route.params.passItem.text,
+      headerRight: () => (
+        <Button
+          title="Warning"
+          onPress={() => {
+            setTextColor('red'); 
+            navigation.setOptions({ title: 'Warning!' }); 
+          }}
+        />
+      ),
+    });
+  }, [navigation]);
+
+  
 
 console.log(route);
   return (
 
-    <View>
-      <Text>GoalDetails</Text>
-      <Text> You are seeing the details of the goal with text : 
+    <View >
+      <Text  style={{ color: textColor }}> You are seeing the details of the goal with text : 
         {route.params.passItem.text}
         and id :
         {route.params.passItem.id}

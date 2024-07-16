@@ -31,13 +31,13 @@ const App = () => {
         <Stack.Screen 
           name="Details" 
           component={GoalDetails} 
-          options={({ route }) => ({ 
-            title: route.params.passItem.text,
-            headerRight: () => (
-              // set options method
-              <Button title="Warning" onPress={() => alert("test")} />
-            )
-          })}
+          // options={({ route }) => ({ 
+          // title: route.params.passItem.text,
+            // headerRight: () => (
+            //   // set options method
+            //   <Button title="Warning" onPress={() => alert("test")} />
+            // )
+          // })}
         />
       </Stack.Navigator>
     </NavigationContainer>
