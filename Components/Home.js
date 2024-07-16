@@ -4,7 +4,7 @@ import Header from './Header';
 import Input from './Input';
 import Goalitem from './Goalitem';
 
-export default function Home() {
+export default function Home( {navigation} ) {
   const HomeName = "summer 2024";
   const [goals, setGoals] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -25,7 +25,11 @@ export default function Home() {
     console.log("delete is handled", daletedId);
     setGoals((currentGoals) => {
       return currentGoals.filter((goal) => goal.id !== daletedId);
-    });
+    })};
+
+    function handlePressGoal() {
+      console.log("press is handled");
+      navigation.navigate('Details');
   }
 
   return (
@@ -45,7 +49,7 @@ export default function Home() {
         <FlatList
         renderItem={({item})=>{
           return (
-             <Goalitem passItem={item} deleteHandler={handleDeleteGoal}/> 
+             <Goalitem passItem={item} deleteHandler={handleDeleteGoal} pressHandler={handlePressGoal}/> 
             // <View style={styles.textContainer}>
             //   <Text style={styles.textStyle}>{item.text}</Text>
             // </View>
