@@ -11,7 +11,14 @@ const Goalitem = ({passItem, deleteHandler, pressHandler}) => {
       <Pressable
       // add android_ripple to make the pressable effect 
         android_ripple={{color: 'pink'}}
-        style={styles.pressable}
+
+        style={({pressed}) => {
+          // it pass in a object, so needs to be destructured.
+          console.log("press:", pressed);
+          // to put 2 styles together, use array.
+          return [styles.pressable, pressed && styles.pressedStyle]
+         
+        }}
         onPress={()=>navigation.navigate('Details', {passItem})}
       >
         <Text style={styles.textStyle}>{text}</Text>
@@ -49,6 +56,10 @@ textContainer: {
     alignItems: "center",
     backgroundColor: 'lightblue',
     padding: 10, 
+  },
+  pressedStyle: {
+    backgroundColor: 'red',
+    opacity: 0.5,
   },
 })
 
