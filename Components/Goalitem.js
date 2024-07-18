@@ -9,6 +9,8 @@ const Goalitem = ({passItem, deleteHandler, pressHandler}) => {
   return (
     <View style={styles.textContainer}>
       <Pressable
+      // add android_ripple to make the pressable effect 
+        android_ripple={{color: 'pink'}}
         style={styles.pressable}
         onPress={()=>navigation.navigate('Details', {passItem})}
       >
