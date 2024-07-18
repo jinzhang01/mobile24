@@ -12,27 +12,33 @@ console.log(Stack);
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>
+      <Stack.Navigator initialRouteName='Home'
+        screenOptions={
+          { headerStyle: { backgroundColor: "darkmagenta" }, 
+            headerTintColor: "white"
+          }
+        }
+        >
         <Stack.Screen 
-      name="Home" 
-      component={Home} 
-      options={{ 
-        headerTitle: "All Goals", 
-        headerStyle: { backgroundColor: "darkmagenta" }, 
-        headerTintColor: "white"
-      }} 
-/>
-    <Stack.Screen 
-      name="Details" 
-      component={GoalDetails} 
-      options={({ route }) => ({ 
-        title: route.params.pressgoal.text,
-        headerRight: () => (
-          // set options method
-          <Button title="Warning" onPress={() => alert("test")} />
-        )
-      })}
-    />
+          name="Home" 
+          component={Home} 
+          options={{ 
+            headerTitle: "All Goals", 
+            // headerStyle: { backgroundColor: "darkmagenta" }, 
+            // headerTintColor: "white"
+          }} 
+        />
+        <Stack.Screen 
+          name="Details" 
+          component={GoalDetails} 
+          // options={({ route }) => ({ 
+          // title: route.params.passItem.text,
+            // headerRight: () => (
+            //   // set options method
+            //   <Button title="Warning" onPress={() => alert("test")} />
+            // )
+          // })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
