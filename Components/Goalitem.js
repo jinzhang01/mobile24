@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Button, Pressable} from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
+import PressableButton from './PressableButton';
 
 const Goalitem = ({passItem, deleteHandler, pressHandler}) => {
   const {id, text} = passItem;
@@ -23,7 +24,12 @@ const Goalitem = ({passItem, deleteHandler, pressHandler}) => {
       >
         <Text style={styles.textStyle}>{text}</Text>
         
-        <Button color="red" title="x" onPress={()=>deleteHandler(id)}/> 
+        {/* <Button color="red" title="x" onPress={()=>deleteHandler(id)}/>  */}
+        <PressableButton 
+        // componentStyle = {styles.buttonStyle}
+        pressedFunction={()=>deleteHandler(id)}>
+          <Text> x </Text>
+        </PressableButton> 
 
         {/* <Button color="black" title="i" onPress={()=>navigation.navigate('Details', {passItem})
           //pass the goal object. 
@@ -61,6 +67,10 @@ textContainer: {
     backgroundColor: 'red',
     opacity: 0.5,
   },
+  buttonStyle: {
+    marginleft:10,
+    backgroundColor: 'darkgrey',
+  }
 })
 
 export default Goalitem
