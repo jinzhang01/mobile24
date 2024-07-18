@@ -26,7 +26,7 @@ const Goalitem = ({passItem, deleteHandler, pressHandler}) => {
         
         {/* <Button color="red" title="x" onPress={()=>deleteHandler(id)}/>  */}
         <PressableButton 
-        // componentStyle = {styles.buttonStyle}
+        componentStyle = {styles.buttonStyle}
         pressedFunction={()=>deleteHandler(id)}>
           <Text> x </Text>
         </PressableButton> 

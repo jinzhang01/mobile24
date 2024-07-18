@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     defaultStyle:
     {
         marginleft:10,
-        backgroundColor: 'blue',
+        backgroundColor: 'cyan',
     },
 
   pressedStyle: {
