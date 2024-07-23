@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
+import { getFirestore } from "firebase/firestore";
 
 import{apiKey, authDomain, projectId, storageBucket, messagingSenderId, appId}  from "@env";
 
@@ -16,5 +17,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export default app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+export const database = getFirestore(app);
+
 
