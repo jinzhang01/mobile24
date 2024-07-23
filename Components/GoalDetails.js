@@ -1,5 +1,6 @@
 import { View, Text, Button } from 'react-native'
 import React, { useState, useEffect }  from 'react'
+import {updateDocInDb} from '../firebase/firestoreHelper';
 
 
 const GoalDetails = ( {navigation, route}) => {
@@ -12,6 +13,8 @@ useEffect(() => {
         <Button
           title="Warning"
           onPress={() => {
+            // update the document in the database.
+            updateDocInDb(route.params.passItem.id, 'goals');
             setTextColor('red'); 
             navigation.setOptions({ title: 'Warning!' }); 
           }}
