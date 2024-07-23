@@ -4,8 +4,10 @@ import Header from './Header';
 import Input from './Input';
 import Goalitem from './Goalitem';
 import PressableButton from './PressableButton';
+import app from '../firebase/firebaseSetup';
 
 export default function Home( {navigation} ) {
+  console.log("app", app);
   const HomeName = "summer 2024";
   const [goals, setGoals] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
