@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, FlatList, Pressable } from 'react-native';
 import Header from './Header';
 import Input from './Input';
 import Goalitem from './Goalitem';
+import PressableButton from './PressableButton';
 
 export default function Home( {navigation} ) {
   const HomeName = "summer 2024";
@@ -39,7 +40,11 @@ export default function Home( {navigation} ) {
     <SafeAreaView style={styles.container}>
       <View style={styles.topContainer}> 
         <Header name={HomeName} theme="dark" />
-        <Button title="Add a goal" onPress={() => setModalVisible(true)} />
+        {/* <Button title="Add a goal" onPress={() => setModalVisible(true)} /> */}
+        <PressableButton pressedFunction={() => setModalVisible(true)}>
+          <Text style={styles.buttonStyle}> Add a goal </Text>
+        </PressableButton>
+
       </View>
 
       <View style={styles.bottomContainer}>
@@ -84,6 +89,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   bottomContainer: {
     flex: 4,
@@ -101,5 +107,9 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     margin: 10
   },
+  buttonStyle: {
+    fontSize: 30, 
+    backgroundColor: 'darkgrey',
+  }
 
 });
