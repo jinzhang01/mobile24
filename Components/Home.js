@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, SafeAreaView, ScrollView, FlatList, Pressable } from 'react-native';
 import Header from './Header';
 import Input from './Input';
 import Goalitem from './Goalitem';
 import PressableButton from './PressableButton';
+import { writeToDb } from '../firebase/firestoreHelper';
+import { collection, onSnapshot } from 'firebase/firestore'; 
+import { database } from '../firebase/firebaseSetup';
+
 
 
 export default function Home( {navigation} ) {
@@ -12,12 +16,36 @@ export default function Home( {navigation} ) {
   const [goals, setGoals] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   
+  useEffect(() => {
+    onSnapshot(collection(database, 'goals'), (querySnapshot) => {
+      const newGoals = [];
+      if (!querySnapshot.empty) {
+        querySnapshot.forEach((docSnapshot) => {
+          console.log(docSnapshot.data());
+          // Add each document's data to the newGoals array
+          newGoals.push({...docSnapshot.data(), id: docSnapshot.id});
+        });
+      }
+      setGoals(newGoals);
+    });
+  }, []);
+
   function handleInputData(data) {
     console.log("input is handled", data);
-    const newGoal = { text: data, id: Math.random().toString() };
-    setGoals((currentGoals) => [...currentGoals, newGoal]);
+    const newGoal = { text: data };
+    writeToDb(newGoal, 'goals');
+
+
+  
+
+    // setGoals((currentGoals) => [...currentGoals, newGoal]);
     setModalVisible(false);
   } 
+
+  // call writeToDB function from firebase/firestoreHelper.js
+  // 
+  
+
 
   function handleCancel() {
     console.log("cancel is handled");
@@ -29,6 +57,10 @@ export default function Home( {navigation} ) {
     setGoals((currentGoals) => {
       return currentGoals.filter((goal) => goal.id !== daletedId);
     })};
+
+
+
+
 
 //     function handlePressGoal(pressgoal) {
 //       console.log("press is handled", pressgoal);
