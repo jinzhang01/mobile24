@@ -20,7 +20,8 @@ useEffect(() => {
     });
   }, [navigation]);
 
-  
+  // if warning button is pressed 
+  // update item to has the warning True or setDoc (merge true)
 
 console.log(route);
   return (
