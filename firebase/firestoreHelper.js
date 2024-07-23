@@ -1,5 +1,6 @@
 import { addDoc, collection } from 'firebase/firestore'; // Corrected import path
 import { database } from './firebaseSetup';
+import { deleteDoc, doc } from 'firebase/firestore';
 
 
 export async function writeToDb(data, collectionName) {
@@ -9,5 +10,14 @@ export async function writeToDb(data, collectionName) {
     }
     catch(e){
         console.error("error adding document:", e);
+    }
+}
+
+export async function deleteFromDb(docId, collectionName) {
+    try{
+    await deleteDoc(doc(database, collectionName, docId));
+    }
+    catch(e){
+        console.error("error deleting document:", e);
     }
 }

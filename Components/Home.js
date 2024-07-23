@@ -7,6 +7,7 @@ import PressableButton from './PressableButton';
 import { writeToDb } from '../firebase/firestoreHelper';
 import { collection, onSnapshot } from 'firebase/firestore'; 
 import { database } from '../firebase/firebaseSetup';
+import {deleteFromDb} from '../firebase/firestoreHelper';
 
 
 
@@ -15,7 +16,7 @@ export default function Home( {navigation} ) {
   const HomeName = "summer 2024";
   const [goals, setGoals] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
-  
+
   useEffect(() => {
     onSnapshot(collection(database, 'goals'), (querySnapshot) => {
       const newGoals = [];
@@ -29,14 +30,15 @@ export default function Home( {navigation} ) {
       setGoals(newGoals);
     });
   }, []);
+  // detach the listner. 
+
+  
 
   function handleInputData(data) {
     console.log("input is handled", data);
     const newGoal = { text: data };
     writeToDb(newGoal, 'goals');
 
-
-  
 
     // setGoals((currentGoals) => [...currentGoals, newGoal]);
     setModalVisible(false);
@@ -54,9 +56,12 @@ export default function Home( {navigation} ) {
 
   function handleDeleteGoal(daletedId) {
     console.log("delete is handled", daletedId);
-    setGoals((currentGoals) => {
-      return currentGoals.filter((goal) => goal.id !== daletedId);
-    })};
+    deleteFromDb(daletedId, 'goals');
+
+    // setGoals((currentGoals) => {
+    //   return currentGoals.filter((goal) => goal.id !== daletedId);
+    // }
+  };
 
 
 
