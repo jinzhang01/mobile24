@@ -29,8 +29,13 @@ export default function Home( {navigation} ) {
       }
       setGoals(newGoals);
     });
+    // detach the listner.
+    return () => {
+      console.log("unsubscribed");
+      unsubscribe();
+    }
   }, []);
-  // detach the listner. 
+
 
   
 
