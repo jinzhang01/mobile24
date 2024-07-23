@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import PressableButton from './PressableButton';
 import { AntDesign } from '@expo/vector-icons';
 
+
 const Goalitem = ({passItem, deleteHandler, pressHandler}) => {
   const {id, text} = passItem;
   const navigation = useNavigation();
