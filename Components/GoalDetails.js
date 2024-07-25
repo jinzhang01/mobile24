@@ -1,6 +1,7 @@
 import { View, Text, Button } from 'react-native'
 import React, { useState, useEffect }  from 'react'
 import {updateDocInDb} from '../firebase/firestoreHelper';
+import GoalUsers from './GoalUsers';
 
 
 const GoalDetails = ( {navigation, route}) => {
@@ -35,6 +36,8 @@ console.log(route);
         and id :
         {route.params.passItem.id}
          </Text>
+
+         <GoalUsers />
 
     </View>
   )

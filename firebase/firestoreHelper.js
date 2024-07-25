@@ -35,3 +35,6 @@ export async function updateDocInDb(docId, collectionName) {
         console.error("error updating document:", e);
     }
 }
+
+
+// await inside the async. 

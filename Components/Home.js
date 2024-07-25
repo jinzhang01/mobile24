@@ -18,7 +18,7 @@ export default function Home( {navigation} ) {
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
-    onSnapshot(collection(database, 'goals'), (querySnapshot) => {
+    const unsubscribe = onSnapshot(collection(database, 'goals'), (querySnapshot) => {
       const newGoals = [];
       if (!querySnapshot.empty) {
         querySnapshot.forEach((docSnapshot) => {
@@ -29,11 +29,12 @@ export default function Home( {navigation} ) {
       }
       setGoals(newGoals);
     });
-    // detach the listner.
+  
+    // Detach the listener when the component unmounts
     return () => {
       console.log("unsubscribed");
       unsubscribe();
-    }
+    };
   }, []);
 
 
