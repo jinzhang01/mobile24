@@ -1,13 +1,16 @@
 import { View, Text, FlatList } from 'react-native';
 import React, { useEffect, useState } from 'react';
+import { addDoc } from 'firebase/firestore';
 
 
-const GoalUsers = () => {
+
+const GoalUsers = ({itemId, route}) => {
 
 
   const[users, setUsers] = useState([]);
 
   useEffect(() => {
+
     async function fetchUserData() {
       try {
         //the patter  a promise insidem async outside. 
@@ -20,6 +23,15 @@ const GoalUsers = () => {
         }
         // josn returns a promise so need to await it.
         const data = await response.json();
+
+        // write this to firebase, assign to a specific goal 
+        data.forEach(element => {
+          console.log("element:", element);
+          if (route.params) {
+            writeToDb(element, `goals/${itemId}/users`);
+          }
+        });
+
         console.log("data:", data);
         setUsers(data);
 

@@ -37,7 +37,7 @@ console.log(route);
         {route.params.passItem.id}
          </Text>
 
-         <GoalUsers />
+         <GoalUsers itemId={route.params.passItem.id}/>
 
     </View>
   )

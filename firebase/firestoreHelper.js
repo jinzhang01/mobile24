@@ -27,6 +27,7 @@ export async function deleteFromDb(docId, collectionName) {
 // update the data, add boolean warning to the data.
 export async function updateDocInDb(docId, collectionName) {
     try{
+        
     await updateDoc(doc(database, collectionName, docId), {
         warning: true
     });
@@ -38,3 +39,7 @@ export async function updateDocInDb(docId, collectionName) {
 
 
 // await inside the async. 
+
+
+
+// add to the db, if the route.params is passed, write to the db, otherwise add to the db.
