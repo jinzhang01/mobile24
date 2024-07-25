@@ -1,6 +1,8 @@
-import { addDoc, collection } from 'firebase/firestore'; // Corrected import path
+import { addDoc, collection } from 'firebase/firestore'; 
 import { database } from './firebaseSetup';
-import { deleteDoc, doc } from 'firebase/firestore';
+import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
+
+
 
 
 export async function writeToDb(data, collectionName) {
@@ -19,5 +21,17 @@ export async function deleteFromDb(docId, collectionName) {
     }
     catch(e){
         console.error("error deleting document:", e);
+    }
+}
+
+// update the data, add boolean warning to the data.
+export async function updateDocInDb(docId, collectionName) {
+    try{
+    await updateDoc(doc(database, collectionName, docId), {
+        warning: true
+    });
+    }
+    catch(e){
+        console.error("error updating document:", e);
     }
 }
