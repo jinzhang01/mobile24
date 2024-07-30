@@ -2,6 +2,8 @@ import { addDoc, collection } from 'firebase/firestore';
 import { database } from './firebaseSetup';
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { getDocs } from 'firebase/firestore';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 
 
@@ -58,3 +60,11 @@ export async function readAllDocs(collectionName) {
 
     }
 }
+
+
+// create the signup createUserWithEmailAndPassword here 
+
+
+
+
+// create the login signInWithEmailAndPassword here
