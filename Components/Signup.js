@@ -32,7 +32,7 @@ const Signup = ({ navigation }) => {
 
   // Define a function to handle navigation back to the login screen
   const handleGoToLogin = () => {
-    navigation.replace("login");
+    navigation.replace("Login");
   };
 
   return (
