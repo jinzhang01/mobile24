@@ -12,6 +12,8 @@ const Stack = createNativeStackNavigator();
 console.log(Stack);
 // include the new added login and signup components
 
+// change the mobile app to have two stack with auth and home
+// the auth stack will have login and signup
 const App = () => {
   return (
     <NavigationContainer>
