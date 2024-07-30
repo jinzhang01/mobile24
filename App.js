@@ -7,7 +7,8 @@ import GoalDetails from "./Components/GoalDetails";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase/firebaseSetup"; // Ensure this path is correct
+import { auth } from "./firebase/firebaseSetup";
+import Profile from "./Components/Profile";
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,7 @@ const App = () => {
           <>
             <Stack.Screen name="Home" component={Home} options={{ title: "All Goals" }} />
             <Stack.Screen name="Details" component={GoalDetails} />
+            <Stack.Screen name="Profile" component={Profile} />
           </>
         ) : (
           // Unauthenticated users see the AuthStack
