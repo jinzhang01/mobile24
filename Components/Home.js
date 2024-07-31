@@ -119,6 +119,8 @@ export default function Home( {navigation} ) {
           </View>
         </ScrollView> */}
 
+        <Button title="Go to profile" onPress={() => navigation.navigate('Profile')} />
+
       </View>
     </SafeAreaView>
   );
