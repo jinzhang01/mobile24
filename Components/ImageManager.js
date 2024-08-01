@@ -1,24 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Button, Text, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
+
 const ImageManager = () => {
   const [image, setImage] = useState(null);
+  const [status, requestPermission] = ImagePicker.useCameraPermissions();
 
+  useEffect(() => {
 
+    const checkPermissions = async () => {
+      const { status } = await ImagePicker.getCameraPermissionsAsync();
+      if (status !== 'granted') {
+        alert("Camera access is required to take pictures.");
+      }
+    };
+    // Check permissions if not already granted
+    checkPermissions();
+  }, []);
 
   const takeImageHandler = async () => {
-    const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
-    if (!permissionResult.granted) {
-      alert("You've refused to allow this app to access your camera!");
-      return;
+    // Directly use status from useCameraPermissions hook
+    if (status !== 'granted') {
+      // Request permission if not already granted
+      const { granted } = await requestPermission();
+      if (!granted) {
+        alert("You've refused to allow this app to access your camera!");
+        return;
+      }
     }
 
     try {
       const result = await ImagePicker.launchCameraAsync({
       });
+      console.log(result);
 
-      if (!result.cancelled) {
+      if (result) {
         setImage(result.uri);
       }
     } catch (err) {
@@ -30,6 +47,8 @@ const ImageManager = () => {
   return (
     <View >
       <Button title="Pick an image" onPress={takeImageHandler} />
+      {/* // Display the image if available */}
+      {image && <Image source={{ uri: result.uri }} />}
 
     </View>
   );
