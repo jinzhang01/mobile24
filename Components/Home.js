@@ -5,11 +5,11 @@ import Input from './Input';
 import Goalitem from './Goalitem';
 import PressableButton from './PressableButton';
 import { writeToDb } from '../firebase/firestoreHelper';
-import { collection, onSnapshot } from 'firebase/firestore'; 
+import { collection, onSnapshot, query, where } from 'firebase/firestore'; 
 import { database } from '../firebase/firebaseSetup';
 import {deleteFromDb} from '../firebase/firestoreHelper';
 import { auth } from '../firebase/firebaseSetup'; 
-import {query, where} from 'firebase/firestore';
+
 
 
 
