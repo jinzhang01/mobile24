@@ -4,7 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 
 const ImageManager = () => {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const [status, requestPermission] = ImagePicker.useCameraPermissions();
 
   useEffect(() => {
@@ -32,11 +32,12 @@ const ImageManager = () => {
 
     try {
       const result = await ImagePicker.launchCameraAsync({
+        allowsEditing: true,
       });
       console.log(result);
 
-      if (result) {
-        setImage(result.uri);
+      if (!result.canceled) {
+        setImage(result.assets[0].uri);
       }
     } catch (err) {
       alert('An error occurred while taking the picture!');
@@ -48,7 +49,7 @@ const ImageManager = () => {
     <View >
       <Button title="Pick an image" onPress={takeImageHandler} />
       {/* // Display the image if available */}
-      {image && <Image source={{ uri: result.uri }} />}
+      {image && <Image source={{ uri: image }} style={{width:100, height:100}}/>}
 
     </View>
   );
