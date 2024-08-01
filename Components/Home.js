@@ -8,6 +8,8 @@ import { writeToDb } from '../firebase/firestoreHelper';
 import { collection, onSnapshot } from 'firebase/firestore'; 
 import { database } from '../firebase/firebaseSetup';
 import {deleteFromDb} from '../firebase/firestoreHelper';
+import { auth } from '../firebase/firebaseSetup'; 
+import {query, where} from 'firebase/firestore';
 
 
 
@@ -18,21 +20,25 @@ export default function Home( {navigation} ) {
   const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(database, 'goals'), (querySnapshot) => {
+    const q = query(
+      collection(database, 'goals'),
+      where("owner", "==", auth.currentUser.uid)
+    );
+  
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const newGoals = [];
       if (!querySnapshot.empty) {
         querySnapshot.forEach((docSnapshot) => {
           console.log(docSnapshot.data());
           // Add each document's data to the newGoals array
-          newGoals.push({...docSnapshot.data(), id: docSnapshot.id});
+          newGoals.push({ ...docSnapshot.data(), id: docSnapshot.id });
         });
       }
       setGoals(newGoals);
     });
   
-    // Detach the listener when the component unmounts
+    // Cleanup subscription on unmount
     return () => {
-      console.log("unsubscribed");
       unsubscribe();
     };
   }, []);
@@ -42,7 +48,7 @@ export default function Home( {navigation} ) {
 
   function handleInputData(data) {
     console.log("input is handled", data);
-    const newGoal = { text: data };
+    const newGoal = { text: data, owner:auth.currentUser.uid };
     writeToDb(newGoal, 'goals');
 
 
