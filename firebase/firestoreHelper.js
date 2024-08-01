@@ -6,8 +6,6 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 
-
-
 export async function writeToDb(data, collectionName) {
     console.log("databae", database);
     try{

@@ -2,6 +2,7 @@ import { View, Text, TextInput, StyleSheet, Modal, Image } from 'react-native'
 import React from 'react'
 import { useState } from 'react'
 import { Button } from 'react-native'
+import ImageManager from './ImageManager'
 
 // update Input why my inputHandler is not working instead of props.inputHandler
 // answer you can etier props.xx or {xx} to descructure before using it
@@ -52,6 +53,9 @@ function handleCancel(){
             onBlur = {() => {setEdited(true);}}
             
           />
+
+          <ImageManager />
+          
 
           <Text>you typed: {text}</Text>
           {isEdited ? <Text>Thank You</Text> : null}
