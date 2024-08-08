@@ -10,6 +10,7 @@ export async function writeToDb(data, collectionName) {
     console.log("databae", database);
     try{
     await addDoc(collection(database, collectionName), data);
+    // await setDoc(doc(database, collectionName, id), data, {merge:true});
     }
     catch(e){
         console.error("error adding document:", e);
@@ -58,6 +59,9 @@ export async function readAllDocs(collectionName) {
 
     }
 }
+
+
+
 
 
 // create the signup createUserWithEmailAndPassword here 
