@@ -44,13 +44,13 @@ const LocationManager = () => {
       <Button title="Static Map Button" onPress={locateUserHandler} />
       <Button title="Interactive Map Button" onPress={()=>{navigation.navigate('Map')}} />
       {location && (
-  <Image
-    source={{
-      uri: `https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&zoom=14&size=400x200&maptype=roadmap&markers=color:red%7Clabel:L%7C${location.latitude},${location.longitude}&key=${mapsApiKey}`,
-    }}
-    style={styles.image}
-  />
-)}
+      <Image
+        source={{
+          uri: `https://maps.googleapis.com/maps/api/staticmap?center=${location.latitude},${location.longitude}&zoom=14&size=400x200&maptype=roadmap&markers=color:red%7Clabel:L%7C${location.latitude},${location.longitude}&key=${mapsApiKey}`,
+        }}
+        style={styles.image}
+      />
+    )}
     </View>
   );
 };

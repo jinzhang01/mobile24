@@ -39,7 +39,7 @@ const Map = () => {
           />
         )}
       </MapView>
-      <Button title="Confirm Location" onPress={confirmLocation} />
+      <Button title="Confirm Location" onPress={confirmLocation} disabled={!selectedLocation}/>
     </View>
   );
 };
