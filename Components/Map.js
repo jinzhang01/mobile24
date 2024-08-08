@@ -1,26 +1,13 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Button } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+// Map.js
+import React, { useState } from "react";
+import { StyleSheet, Button } from "react-native";
+import MapView, { Marker } from "react-native-maps";
 
-const Map = () => {
+const Map = ({ navigation }) => {
   const [selectedLocation, setSelectedLocation] = useState(null);
 
-  const handlePress = (event) => {
-    const { latitude, longitude } = event.nativeEvent.coordinate;
-    console.log(latitude, longitude);
-    setSelectedLocation({ latitude, longitude });
-  };
-
-  const confirmLocation = () => {
-    if (selectedLocation) {
-      console.log('Location confirmed:', selectedLocation);
-    } else {
-      console.log('No location selected');
-    }
-  };
-
   return (
-    <View style={styles.container}>
+    <>
       <MapView
         style={styles.map}
         initialRegion={{
@@ -29,27 +16,30 @@ const Map = () => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
-        onPress={handlePress}
+        onPress={(e) => {
+          setSelectedLocation({
+            latitude: e.nativeEvent.coordinate.latitude,
+            longitude: e.nativeEvent.coordinate.longitude,
+          });
+          // when the user presses the map, log the event (showing latitude and logitude)
+        }}
       >
-        {selectedLocation && (
-          <Marker
-            coordinate={selectedLocation}
-            title="Selected Location"
-            description={`Latitude: ${selectedLocation.latitude}, Longitude: ${selectedLocation.longitude}`}
-          />
-        )}
+        {selectedLocation && <Marker coordinate={selectedLocation} />}
       </MapView>
-      <Button title="Confirm Location" onPress={confirmLocation} disabled={!selectedLocation}/>
-    </View>
+      <Button
+        title="Confirm Selected Location"
+        onPress={() => {
+          navigation.navigate("Profile", { selectedLocation });
+        }}
+        disabled={!selectedLocation}
+      />
+    </>
   );
 };
 
 export default Map;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   map: {
     flex: 1,
   },
