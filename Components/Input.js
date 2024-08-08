@@ -33,6 +33,7 @@ function handleCancel(){
 
           <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2617/2617812.png' }} alt="goal web" style={styles.imageStyle}/>
           <Image source={require('../res/goal.png')} alt="goal local" style={styles.imageStyle}/>
+          
 
           <TextInput 
             autoFocus={true} 

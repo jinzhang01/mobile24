@@ -27,4 +27,9 @@ export const auth = initializeAuth(app, {
 });
 
 
+import { getStorage } from "firebase/storage";
+export const storage = getStorage(app);
+
+
+
 

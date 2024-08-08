@@ -9,6 +9,7 @@ import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { database } from '../firebase/firebaseSetup';
 import {deleteFromDb} from '../firebase/firestoreHelper';
 import { auth } from '../firebase/firebaseSetup'; 
+import LocationManager from './LocationManager';
 
 
 
@@ -126,6 +127,9 @@ export default function Home( {navigation} ) {
         </ScrollView> */}
 
         <Button title="Go to profile" onPress={() => navigation.navigate('Profile')} />
+
+          <LocationManager />
+
 
       </View>
     </SafeAreaView>
