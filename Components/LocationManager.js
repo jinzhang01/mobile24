@@ -1,4 +1,4 @@
-import { Alert, Button, StyleSheet, Image, View } from "react-native";
+import { Alert, Button, StyleSheet, Image, View, useRoute } from "react-native";
 import React, { useState } from "react";
 import * as Location from "expo-location";
 import { mapsApiKey } from "@env";
@@ -7,8 +7,12 @@ import {useNavigation} from '@react-navigation/native';
 const windowWidth = Dimensions.get("window").width;
 
 
+
 const LocationManager = () => {
   const navigation = useNavigation();
+
+
+
   const [response, requestPermission] = Location.useForegroundPermissions();
   const [location, setLocation] = useState(null);
   async function verifyPermission() {
