@@ -10,8 +10,18 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebaseSetup";
 import Profile from "./Components/Profile";
 import Map from "./Components/Map";
+import * as Notifications from 'expo-notifications';
 
 const Stack = createNativeStackNavigator();
+
+// Set up the notification handler
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: true,
+  }),
+});
 
 const App = () => {
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
@@ -23,6 +33,16 @@ const App = () => {
 
     return () => unsubscribe();
   }, []);
+
+
+  useEffect(() => {
+    const subscription = Notifications.addNotificationReceivedListener(notification => {
+      console.log(notification);
+    });
+    return () => subscription.remove();
+  });
+
+  
 
   return (
     <NavigationContainer>
