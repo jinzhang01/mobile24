@@ -1,28 +1,19 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { auth } from '../firebase/firebaseSetup';
-import { Button } from 'react-native';
+import React from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
+import { auth } from "../firebase/firebaseSetup";
+import { signOut } from "firebase/auth";
+import LocationManager from "./LocationManager";
+import NotificationManager from "./NotificationManager";
 
-const Profile = () => {
-  const userId = auth.currentUser.uid;
-  
-  function signOut (navigation) {
-    auth.signOut().then(() => {
-      console.log("User signed out");
-    //   navigation.navigation("Login");
-    }).catch((error) => {
-      console.error("Error signing out:", error);
-    });}
-
+const Profile = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Profile</Text>
-      <Text>ID: {userId}</Text>
-
-      <Button title="Sign out" onPress={() => signOut()} />
+    <View>
+      <Button title="Log out" onPress={() => signOut(auth)} />
+      <Text>Profile of user with id: {auth.currentUser.uid}</Text>
+      <LocationManager />
+      <NotificationManager />
     </View>
-
   );
-}
+};
 
 export default Profile;
