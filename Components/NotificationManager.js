@@ -1,46 +1,51 @@
-import { View, Button } from 'react-native';
-import React from 'react';
-import * as Notifications from 'expo-notifications';
-
-async function verifyPermission() {
-  const response = await Notifications.getPermissionsAsync();
-  console.log(response);
-  if (response.granted) {
-    return true;
-  }
-  // If we don't have permission, let's ask for it
-  const permissionResponse = await Notifications.requestPermissionsAsync();
-  return permissionResponse.granted;
-}
+import React from "react";
+import { View, Button, Alert } from "react-native";
+import * as Notifications from "expo-notifications";
 
 const NotificationManager = () => {
-  async function scheduleNotification() {
+  const [response, requestPermission] = Notifications.usePermissions();
+
+  async function scheduleNotificationHandler() {
     try {
+      // Verify permission before continuing
       const hasPermission = await verifyPermission();
-      if (hasPermission) {
-        console.log('Permission granted');
-        await Notifications.scheduleNotificationAsync({
-          content: {
-            title: 'You have a goal to add',
-            body: 'Please add a goal to your list',
-          },
-          trigger: {
-            seconds: 1,
-          },
-        });
-      } else {
-        console.log('Permission not granted');
+      if (!hasPermission) {
+        Alert.alert("You need to give permission to use notification services");
+        return;
       }
-    } catch (error) {
-      console.log(error);
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: "Goal Reminder",
+          body: "Don't forget to add a goal!",
+          data: { url: "https://www.google.com" },
+        },
+        trigger: {
+          seconds: 5,
+        },
+      });
+      console.log("Notification scheduled");
+    } catch (err) {
+      console.log("Notification services error: ", err);
     }
+  }
+
+  async function verifyPermission() {
+    if (response.granted) {
+      return true;
+    }
+    // Request permission if not granted
+    const permissionResponse = await requestPermission();
+    return permissionResponse.granted;
   }
 
   return (
     <View>
-      <Button title="Remind me to add a goal" onPress={scheduleNotification} />
+      <Button
+        title="Remind me to add a goal"
+        onPress={scheduleNotificationHandler}
+      />
     </View>
   );
-}
+};
 
 export default NotificationManager;
