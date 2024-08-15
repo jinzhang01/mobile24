@@ -22,11 +22,14 @@
     "expo-image-picker": "~15.0.7",
     "typescript": "~5.3.3",
     "@types/react": "~18.2.79",
-    "expo-location": "~17.0.1"
+    "expo-location": "~17.0.1",
+    "react-native-maps": "1.14.0",
+    "expo-notifications": "~0.28.15"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "react-native-dotenv": "^3.4.11"
   },
   "private": true
+  
 }
