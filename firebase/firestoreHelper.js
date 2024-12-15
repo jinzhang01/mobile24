@@ -1,6 +1,6 @@
 import { addDoc, collection } from 'firebase/firestore'; 
 import { database } from './firebaseSetup';
-import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import { deleteDoc, doc, updateDoc, getDoc, setDoc } from 'firebase/firestore';
 import { getDocs } from 'firebase/firestore';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
@@ -10,6 +10,7 @@ export async function writeToDb(data, collectionName) {
     console.log("databae", database);
     try{
     await addDoc(collection(database, collectionName), data);
+    // await setDoc(doc(database, collectionName, id), data, {merge:true});
     }
     catch(e){
         console.error("error adding document:", e);
@@ -58,6 +59,27 @@ export async function readAllDocs(collectionName) {
 
     }
 }
+
+
+export async function WriteWithIdToDB(data, collectionName, id) {
+    try {
+      await setDoc(doc(database, collectionName, id), data, { merge: true });
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
+  
+  export async function getADoc(collectionName, id) {
+    try {
+      const docSnap = await getDoc(doc(database, collectionName, id));
+  
+      if (docSnap.exists()) {
+        return docSnap.data();
+      }
+    } catch (e) {
+      console.error("Error getting document: ", e);
+    }
+  }
 
 
 // create the signup createUserWithEmailAndPassword here 
